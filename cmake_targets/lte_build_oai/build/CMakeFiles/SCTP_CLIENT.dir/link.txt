@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSCTP_CLIENT.a  CMakeFiles/SCTP_CLIENT.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair3/SCTP/sctp_common.c.o CMakeFiles/SCTP_CLIENT.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair3/SCTP/sctp_eNB_task.c.o CMakeFiles/SCTP_CLIENT.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair3/SCTP/sctp_eNB_itti_messaging.c.o
+/usr/bin/ranlib libSCTP_CLIENT.a

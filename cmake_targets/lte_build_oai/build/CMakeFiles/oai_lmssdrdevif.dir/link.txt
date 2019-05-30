@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC    -mavx2 -msse4.1 -mssse3  -std=c++11 -D'MAKE_VERSION(a,b,c)=((a)*256+(b)*16+c)' -O2 -g -DNDEBUG  -shared  -o liboai_lmssdrdevif.so CMakeFiles/oai_lmssdrdevif.dir/home/labuser/Desktop/openairinterface5g_f1ap/targets/ARCH/LMSSDR/USERSPACE/LIB/lms_lib.cpp.o -lLimeSuite 

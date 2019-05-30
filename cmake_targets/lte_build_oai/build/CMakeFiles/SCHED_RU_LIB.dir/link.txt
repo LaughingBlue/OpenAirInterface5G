@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSCHED_RU_LIB.a  CMakeFiles/SCHED_RU_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SCHED/ru_procedures.c.o CMakeFiles/SCHED_RU_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SCHED/prach_procedures.c.o
+/usr/bin/ranlib libSCHED_RU_LIB.a

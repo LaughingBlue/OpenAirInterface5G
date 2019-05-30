@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/labuser/Desktop/openairinterface5g_f1ap/targets/ARCH/COMMON/common_lib.h
+stdint.h
+-
+sys/types.h
+-
+enums.h
+-
+enums.h
+-
+
+/home/labuser/Desktop/openairinterface5g_f1ap/targets/ARCH/tcp_bridge/tcp_bridge_oai.c
+sys/socket.h
+-
+netinet/in.h
+-
+netinet/tcp.h
+-
+arpa/inet.h
+-
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+unistd.h
+-
+errno.h
+-
+common_lib.h
+/home/labuser/Desktop/openairinterface5g_f1ap/targets/ARCH/tcp_bridge/common_lib.h
+

@@ -1,0 +1,2 @@
+Linking C shared module librfsimulator.so
+Built target rfsimulator

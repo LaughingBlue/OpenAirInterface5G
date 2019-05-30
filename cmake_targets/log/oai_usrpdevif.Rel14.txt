@@ -1,0 +1,3 @@
+Built target generate_T
+Linking CXX shared module liboai_usrpdevif.so
+Built target oai_usrpdevif

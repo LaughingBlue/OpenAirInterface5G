@@ -1,0 +1,2 @@
+/usr/bin/ar qc libNFAPI_VNF_LIB.a  CMakeFiles/NFAPI_VNF_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/vnf/src/vnf.c.o CMakeFiles/NFAPI_VNF_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/vnf/src/vnf_interface.c.o CMakeFiles/NFAPI_VNF_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/vnf/src/vnf_p7.c.o CMakeFiles/NFAPI_VNF_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/vnf/src/vnf_p7_interface.c.o
+/usr/bin/ranlib libNFAPI_VNF_LIB.a

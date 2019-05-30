@@ -1,0 +1,5 @@
+Built target generate_T
+Scanning dependencies of target oai_eth_transpro
+Building C object CMakeFiles/oai_eth_transpro.dir/home/labuser/Desktop/openairinterface5g_f1ap/targets/ARCH/ETHERNET/USERSPACE/LIB/eth_udp.c.o
+Linking C shared module liboai_eth_transpro.so
+Built target oai_eth_transpro

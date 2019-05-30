@@ -1,0 +1,4 @@
+.vscode/
+./cmake_targets/lte_build_oai/build/
+*.a
+*.so

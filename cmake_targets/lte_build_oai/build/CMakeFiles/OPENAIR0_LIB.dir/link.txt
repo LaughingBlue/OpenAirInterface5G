@@ -1,0 +1,2 @@
+/usr/bin/ar qc libOPENAIR0_LIB.a  CMakeFiles/OPENAIR0_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/targets/ARCH/EXMIMO/USERSPACE/LIB/openair0_lib.c.o
+/usr/bin/ranlib libOPENAIR0_LIB.a

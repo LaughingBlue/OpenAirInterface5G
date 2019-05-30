@@ -1,0 +1,2 @@
+/usr/bin/ar qc libASYNC_IF.a  CMakeFiles/ASYNC_IF.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair2/UTIL/ASYNC_IF/socket_link.c.o CMakeFiles/ASYNC_IF.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair2/UTIL/ASYNC_IF/link_manager.c.o CMakeFiles/ASYNC_IF.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair2/UTIL/ASYNC_IF/message_queue.c.o CMakeFiles/ASYNC_IF.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair2/UTIL/ASYNC_IF/ringbuffer_queue.c.o
+/usr/bin/ranlib libASYNC_IF.a

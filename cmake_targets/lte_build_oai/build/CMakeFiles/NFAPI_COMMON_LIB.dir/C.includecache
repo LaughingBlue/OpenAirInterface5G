@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/common/public_inc/debug.h
+
+/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/common/src/debug.c
+stdio.h
+-
+stdarg.h
+-
+stdint.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+errno.h
+-
+sys/time.h
+-
+sys/types.h
+-
+pthread.h
+-
+syslog.h
+-
+debug.h
+-
+

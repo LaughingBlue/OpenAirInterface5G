@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSCHED_LIB.a  CMakeFiles/SCHED_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SCHED/fapi_l1.c.o CMakeFiles/SCHED_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SCHED/phy_procedures_lte_eNb.c.o CMakeFiles/SCHED_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SCHED/phy_procedures_lte_common.c.o
+/usr/bin/ranlib libSCHED_LIB.a

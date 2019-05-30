@@ -1,0 +1,2 @@
+/usr/bin/ar qc libNFAPI_COMMON_LIB.a  CMakeFiles/NFAPI_COMMON_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/open-nFAPI/common/src/debug.c.o
+/usr/bin/ranlib libNFAPI_COMMON_LIB.a

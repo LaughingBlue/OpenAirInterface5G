@@ -1,0 +1,3 @@
+file(REMOVE_RECURSE
+  "libOPENAIR0_LIB.a"
+)

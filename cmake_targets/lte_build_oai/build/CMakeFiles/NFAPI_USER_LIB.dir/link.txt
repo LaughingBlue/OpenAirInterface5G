@@ -1,0 +1,2 @@
+/usr/bin/ar qc libNFAPI_USER_LIB.a  CMakeFiles/NFAPI_USER_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/oai_integration/nfapi.c.o CMakeFiles/NFAPI_USER_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/oai_integration/nfapi_pnf.c.o CMakeFiles/NFAPI_USER_LIB.dir/home/labuser/Desktop/openairinterface5g_f1ap/nfapi/oai_integration/nfapi_vnf.c.o
+/usr/bin/ranlib libNFAPI_USER_LIB.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSIMU_ETH.a  CMakeFiles/SIMU_ETH.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SIMULATION/ETH_TRANSPORT/netlink_init.c.o CMakeFiles/SIMU_ETH.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SIMULATION/ETH_TRANSPORT/multicast_link.c.o CMakeFiles/SIMU_ETH.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SIMULATION/ETH_TRANSPORT/socket.c.o CMakeFiles/SIMU_ETH.dir/home/labuser/Desktop/openairinterface5g_f1ap/openair1/SIMULATION/ETH_TRANSPORT/bypass_session_layer.c.o
+/usr/bin/ranlib libSIMU_ETH.a

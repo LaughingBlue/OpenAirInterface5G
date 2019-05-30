@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/labuser/Desktop/openairinterface5g_f1ap/openair1/PHY/MODULATION/gen_75KHz.cpp
+stdio.h
+-
+stdint.h
+-
+string.h
+-
+malloc.h
+-
+assert.h
+-
+complex
+-
+cmath
+-
+map
+-
+PHY/MODULATION/modulation_extern.h
+-
+
+/home/labuser/Desktop/openairinterface5g_f1ap/openair1/PHY/MODULATION/modulation_extern.h
+
