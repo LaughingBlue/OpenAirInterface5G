@@ -68,13 +68,13 @@ int DU_handle_RESET_ACKNOWLEDGE(instance_t instance,
 */
 
 int DU_send_ERROR_INDICATION(instance_t instance) {
-  F1AP_F1AP_PDU_t          pdu; 
+  F1AP_F1AP_PDU_t            pdu;
   F1AP_ErrorIndication_t    *out;
   F1AP_ErrorIndicationIEs_t *ie;
 
   uint8_t  *buffer;
   uint32_t  len;
-
+  
   /* Create */
   /* 0. pdu Type */
   memset(&pdu, 0, sizeof(pdu));
@@ -93,72 +93,69 @@ int DU_send_ERROR_INDICATION(instance_t instance) {
   ie->value.present             = F1AP_ErrorIndicationIEs__value_PR_TransactionID;
   ie->value.choice.TransactionID = 1;
   ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
-
   
-
-  /* mandatory */
-  /* c1. GNB_CU_UE_F1AP_ID */
-  ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
-  ie->id                             = F1AP_ProtocolIE_ID_id_gNB_CU_UE_F1AP_ID;
-  ie->criticality                    = F1AP_Criticality_ignore;
-  ie->value.present                  = F1AP_ErrorIndicationIEs__value_PR_GNB_CU_UE_F1AP_ID;
-  ie->value.choice.GNB_CU_UE_F1AP_ID = 1;
-  ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
-
-  /* mandatory */
-  /* c2. GNB_DU_UE_F1AP_ID */
-  ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
-  ie->id                             = F1AP_ProtocolIE_ID_id_gNB_DU_UE_F1AP_ID;
-  ie->criticality                    = F1AP_Criticality_ignore;
-  ie->value.present                  = F1AP_ErrorIndicationIEs__value_PR_GNB_DU_UE_F1AP_ID;
-  ie->value.choice.GNB_DU_UE_F1AP_ID = 1;
-  ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
-
-  /* mandatory */
-  /* c3. Cause */
-  ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
-  ie->id                             = F1AP_ProtocolIE_ID_id_Cause;
-  ie->criticality                    = F1AP_Criticality_ignore;
-  ie->value.present                  = F1AP_ErrorIndicationIEs__value_PR_Cause;
-
-
-  ie->value.choice.Cause.present = F1AP_Cause_PR_radioNetwork;
-  ie->value.choice.Cause.choice.radioNetwork = F1AP_CauseRadioNetwork_unspecified;
-      
-  
-  ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
-
+  /* optional */
+  /* c2. GNB_CU_UE_F1AP_ID */
   if (1) {
     ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
-    ie->id                             = F1AP_ProtocolIE_ID_id_CriticalityDiagnostics;
-    ie->criticality                    = F1AP_Criticality_ignore;
-    ie->value.present                  = F1AP_ErrorIndicationIEs__value_PR_CriticalityDiagnostics;
-    
-    ie->value.choice.CriticalityDiagnostics.procedureCode = (F1AP_ProcedureCode_t *)calloc(1, sizeof(F1AP_ProcedureCode_t));
-    *ie->value.choice.CriticalityDiagnostics.procedureCode = F1AP_ProcedureCode_id_UEContextSetup;
-    
-    ie->value.choice.CriticalityDiagnostics.triggeringMessage = (F1AP_TriggeringMessage_t *)calloc(1, sizeof(F1AP_TriggeringMessage_t));
-    *ie->value.choice.CriticalityDiagnostics.triggeringMessage = F1AP_TriggeringMessage_initiating_message;
-    
-    ie->value.choice.CriticalityDiagnostics.procedureCriticality = (F1AP_Criticality_t *)calloc(1, sizeof(F1AP_Criticality_t));
-    *ie->value.choice.CriticalityDiagnostics.procedureCriticality = F1AP_Criticality_reject;
-    
-    ie->value.choice.CriticalityDiagnostics.transactionID = (F1AP_TransactionID_t *)calloc(1, sizeof(F1AP_TransactionID_t));
-    *ie->value.choice.CriticalityDiagnostics.transactionID = 1;
-    
+    ie->id                        = F1AP_ProtocolIE_ID_id_gNB_CU_UE_F1AP_ID;
+    ie->criticality               = F1AP_Criticality_ignore;
+    ie->value.present             = F1AP_ErrorIndicationIEs__value_PR_GNB_CU_UE_F1AP_ID;
+    ie->value.choice.GNB_CU_UE_F1AP_ID = 2;
     ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
   }
 
- /* encode */
-  if (f1ap_encode_pdu(&pdu, &buffer, &len) < 0) {
-    LOG_E(F1AP, "Failed to encode F1 error_indi \n");
-    return -1;  
+  /* optional */
+  /* c3. GNB_DU_UE_F1AP_ID */
+  if (1) {
+    ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
+    ie->id                        = F1AP_ProtocolIE_ID_id_gNB_DU_UE_F1AP_ID;
+    ie->criticality               = F1AP_Criticality_ignore;
+    ie->value.present             = F1AP_ErrorIndicationIEs__value_PR_GNB_DU_UE_F1AP_ID;
+    ie->value.choice.GNB_DU_UE_F1AP_ID = 3;
+    ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
   }
 
-  du_f1ap_itti_send_sctp_data_req(instance, f1ap_du_data->assoc_id, buffer, len, 0);  
+  /* optional */
+  /* c4. Cause */
+  if (1) {
+    ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
+    ie->id                        = F1AP_ProtocolIE_ID_id_Cause;
+    ie->criticality               = F1AP_Criticality_ignore;
+    ie->value.present             = F1AP_ErrorIndicationIEs__value_PR_Cause;
+    ie->value.choice.Cause.present = F1AP_Cause_PR_radioNetwork;
+    ie->value.choice.Cause.choice.radioNetwork = F1AP_CauseRadioNetwork_unspecified;
+    ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
+  }
 
+  /* optional */
+  /* c5. CriticalityDiagnostics */
+  if (1) {
+    ie = (F1AP_ErrorIndicationIEs_t *)calloc(1, sizeof(F1AP_ErrorIndicationIEs_t));
+    ie->id                        = F1AP_ProtocolIE_ID_id_CriticalityDiagnostics;
+    ie->criticality               = F1AP_Criticality_ignore;
+    ie->value.present             = F1AP_ErrorIndicationIEs__value_PR_CriticalityDiagnostics;
+    ie->value.choice.CriticalityDiagnostics.procedureCode = (F1AP_ProcedureCode_t *)calloc(1, sizeof(F1AP_ProcedureCode_t));
+    *ie->value.choice.CriticalityDiagnostics.procedureCode = F1AP_ProcedureCode_id_UEContextSetup;
+    ie->value.choice.CriticalityDiagnostics.triggeringMessage = (F1AP_TriggeringMessage_t *)calloc(1, sizeof(F1AP_TriggeringMessage_t));
+    *ie->value.choice.CriticalityDiagnostics.triggeringMessage = F1AP_TriggeringMessage_initiating_message;
+    ie->value.choice.CriticalityDiagnostics.procedureCriticality = (F1AP_Criticality_t *)calloc(1, sizeof(F1AP_Criticality_t));
+    *ie->value.choice.CriticalityDiagnostics.procedureCriticality = F1AP_Criticality_reject;
+    ie->value.choice.CriticalityDiagnostics.transactionID = (F1AP_TransactionID_t *)calloc(1, sizeof(F1AP_TransactionID_t));
+    *ie->value.choice.CriticalityDiagnostics.transactionID = 0;
+    ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
+  }
+  
+  /* encode */
+  if (f1ap_encode_pdu(&pdu, &buffer, &len) < 0) {
+    LOG_E(F1AP, "Failed to encode F1 ERROR_INDICATION\n");
+    return -1;
+  }
+
+  // send with sctp
+  du_f1ap_itti_send_sctp_data_req(instance, f1ap_du_data->assoc_id, buffer, len, 0);
+  
   return 0;
-
 }
 
 int DU_handle_ERROR_INDICATION(instance_t instance,
@@ -177,8 +174,6 @@ int DU_handle_ERROR_INDICATION(instance_t instance,
 int DU_send_F1_SETUP_REQUEST(instance_t instance) {
   module_id_t enb_mod_idP=0;
   module_id_t du_mod_idP=0;
-
-  DU_send_ERROR_INDICATION(instance);
 
   F1AP_F1AP_PDU_t          pdu; 
   F1AP_F1SetupRequest_t    *out;
