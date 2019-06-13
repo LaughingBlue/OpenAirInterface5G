@@ -105,7 +105,7 @@ int CU_handle_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance);
 //                                                   uint32_t stream,
 //                                                   F1AP_F1AP_PDU_t *pdu);
 
-int CU_send_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance_t instance,
-                    F1AP_GNBDUResourceCoordinationResponse_t *GNBDUResourceCoordinationResponse);
+int CU_send_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance_t instance);
+//                    F1AP_GNBDUResourceCoordinationResponse_t *GNBDUResourceCoordinationResponse);
 
 #endif /* F1AP_CU_INTERFACE_MANAGEMENT_H_ */

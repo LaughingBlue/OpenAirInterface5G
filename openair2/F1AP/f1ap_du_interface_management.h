@@ -107,8 +107,8 @@ int DU_send_gNB_CU_CONFIGURATION_UPDATE_ACKNOWLEDGE(instance_t instance,
 /*
  * gNB-DU Resource Coordination
  */
-int DU_send_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance,
-                    F1AP_GNBDUResourceCoordinationRequest_t *GNBDUResourceCoordinationRequest);
+int DU_send_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance);
+//                    F1AP_GNBDUResourceCoordinationRequest_t *GNBDUResourceCoordinationRequest);
 
 int DU_handle_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance_t instance);
 //                                                    uint32_t assoc_id,
