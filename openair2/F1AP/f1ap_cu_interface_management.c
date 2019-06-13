@@ -71,7 +71,7 @@ int CU_handle_ERROR_INDICATION(instance_t instance,
   AssertFatal(1==0,"Not implemented yet\n");
 }
 
-int CU_send_ERROR_INDICATION(instance_t instance, F1AP_ErrorIndication_t *ErrorIndication) {
+int CU_send_ERROR_INDICATION(instance_t instance) {
   F1AP_F1AP_PDU_t            pdu;
   F1AP_ErrorIndication_t    *out;
   F1AP_ErrorIndicationIEs_t *ie;
@@ -177,7 +177,8 @@ int CU_handle_F1_SETUP_REQUEST(instance_t instance,
   F1AP_F1SetupRequest_t              *container;
   F1AP_F1SetupRequestIEs_t           *ie;
   int i = 0;
-   
+  CU_send_ERROR_INDICATION(instance);
+  CU_handle_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance);
 
   DevAssert(pdu != NULL);
 
@@ -979,12 +980,9 @@ int CU_handle_gNB_CU_CONFIGURATION_UPDATE_ACKNOWLEDGE(instance_t instance,
 }
 
 
-int CU_handle_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance,
-                                                    uint32_t assoc_id,
-                                                    uint32_t stream,
-                                                    F1AP_F1AP_PDU_t *pdu) 
+int CU_handle_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance) 
 {
-  //F1AP_F1AP_PDU_t            pdu;
+  F1AP_F1AP_PDU_t            pdu;
   F1AP_GNBDUResourceCoordinationRequest_t    *out;
   F1AP_GNBDUResourceCoordinationRequest_IEs_t *ie;
 
@@ -995,12 +993,12 @@ int CU_handle_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance,
   /* Create */
   /* 0. pdu Type */
   memset(&pdu, 0, sizeof(pdu));
-  pdu->present = F1AP_F1AP_PDU_PR_initiatingMessage;
-  pdu->choice.initiatingMessage = (F1AP_InitiatingMessage_t *)calloc(1, sizeof(F1AP_InitiatingMessage_t));
-  pdu->choice.initiatingMessage->procedureCode = F1AP_ProcedureCode_id_GNBDUResourceCoordination;
-  pdu->choice.initiatingMessage->criticality   = F1AP_Criticality_reject;
-  pdu->choice.initiatingMessage->value.present = F1AP_InitiatingMessage__value_PR_GNBDUResourceCoordinationRequest;
-  out = &pdu->choice.initiatingMessage->value.choice.GNBDUResourceCoordinationRequest;
+  pdu.present = F1AP_F1AP_PDU_PR_initiatingMessage;
+  pdu.choice.initiatingMessage = (F1AP_InitiatingMessage_t *)calloc(1, sizeof(F1AP_InitiatingMessage_t));
+  pdu.choice.initiatingMessage->procedureCode = F1AP_ProcedureCode_id_GNBDUResourceCoordination;
+  pdu.choice.initiatingMessage->criticality   = F1AP_Criticality_reject;
+  pdu.choice.initiatingMessage->value.present = F1AP_InitiatingMessage__value_PR_GNBDUResourceCoordinationRequest;
+  out = &pdu.choice.initiatingMessage->value.choice.GNBDUResourceCoordinationRequest;
 
   /* mandatory */
   /* c1. Transaction ID (integer value) */
