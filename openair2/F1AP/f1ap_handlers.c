@@ -48,7 +48,7 @@ f1ap_message_decoded_callback f1ap_messages_callback[][3] = {
 
   { 0, 0, 0 }, /* Reset */
   { CU_handle_F1_SETUP_REQUEST, DU_handle_F1_SETUP_RESPONSE, DU_handle_F1_SETUP_FAILURE }, /* F1Setup */
-  { 0, 0, 0 }, /* ErrorIndication */
+  { CU_handle_ERROR_INDICATION, 0, 0 }, /* ErrorIndication */
   { 0, 0, 0 }, /* gNBDUConfigurationUpdate */
   { 0, 0, 0 }, /* gNBCUConfigurationUpdate */
   { DU_handle_UE_CONTEXT_SETUP_REQUEST, CU_handle_UE_CONTEXT_SETUP_RESPONSE, 0 }, /* UEContextSetup */

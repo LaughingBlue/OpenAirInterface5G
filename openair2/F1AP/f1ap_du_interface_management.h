@@ -115,4 +115,7 @@ int DU_handle_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance_t instance);
 //                                                    uint32_t stream,
 //                                                    F1AP_F1AP_PDU_t *pdu);
 
+
+int DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE(instance_t instance);
+
 #endif /* F1AP_DU_INTERFACE_MANAGEMENT_H_ */

@@ -175,10 +175,10 @@ int DU_send_F1_SETUP_REQUEST(instance_t instance) {
   module_id_t enb_mod_idP=0;
   module_id_t du_mod_idP=0;
 
-  DU_send_ERROR_INDICATION(instance);
-  DU_send_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance);
+  //DU_send_ERROR_INDICATION(instance);
+  //DU_send_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance);
+  DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE(instance);
   
-
   F1AP_F1AP_PDU_t          pdu; 
   F1AP_F1SetupRequest_t    *out;
   F1AP_F1SetupRequestIEs_t *ie;
@@ -234,6 +234,9 @@ int DU_send_F1_SETUP_REQUEST(instance_t instance) {
   ie->id                        = F1AP_ProtocolIE_ID_id_gNB_DU_Served_Cells_List;
   ie->criticality               = F1AP_Criticality_reject;
   ie->value.present             = F1AP_F1SetupRequestIEs__value_PR_GNB_DU_Served_Cells_List;
+
+
+
 
   int num_cells_available = f1ap_du_data->num_cells_available;
   LOG_D(F1AP, "num_cells_available = %d \n", num_cells_available);
@@ -504,6 +507,7 @@ int DU_send_F1_SETUP_REQUEST(instance_t instance) {
   0,0,//MSC_AS_TIME_ARGS(ctxt_pP),
   f1ap_du_data->gNB_DU_name);
 
+
   du_f1ap_itti_send_sctp_data_req(instance, f1ap_du_data->assoc_id, buffer, len, 0);
 
   return 0;
@@ -514,7 +518,8 @@ int DU_handle_F1_SETUP_RESPONSE(instance_t instance,
 				uint32_t               stream,
 				F1AP_F1AP_PDU_t       *pdu)
 {
-  DU_handle_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance);
+  //DU_handle_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance);
+  //DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE(instance);
    LOG_D(F1AP, "DU_handle_F1_SETUP_RESPONSE\n");
 
    AssertFatal(pdu->present == F1AP_F1AP_PDU_PR_successfulOutcome,
@@ -1227,8 +1232,69 @@ int DU_handle_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance_t instance)
     ie->id                        = F1AP_ProtocolIE_ID_id_EUTRA_NR_CellResourceCoordinationReqAck_Container;
     ie->criticality               = F1AP_Criticality_reject;
     ie->value.present             = F1AP_GNBDUResourceCoordinationResponse_IEs__value_PR_EUTRA_NR_CellResourceCoordinationReqAck_Container;
+    
     OCTET_STRING_fromBuf(&s, "32 33 34 35 36 37", sizeof("32 33 34 35 36 37")/sizeof(char));
     ie->value.choice.EUTRA_NR_CellResourceCoordinationReqAck_Container = s;
+    ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
+  }
+  
+  /* encode */
+  if (f1ap_encode_pdu(&pdu, &buffer, &len) < 0) {
+    LOG_E(F1AP, "Failed to encode F1 gNB_DU_RESOURCE_COORDINATION_RESPONSE\n");
+    return -1;
+  }
+
+  // send with sctp
+  du_f1ap_itti_send_sctp_data_req(instance, f1ap_du_data->assoc_id, buffer, len, 0);
+
+  return 0;
+
+}
+
+int DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE(instance_t instance)
+//                                uint32_t assoc_id,
+//                                uint32_t stream,
+//                                F1AP_F1AP_PDU_t *pdu) 
+{
+  F1AP_F1AP_PDU_t            pdu;
+  F1AP_GNBDUResourceCoordinationResponse_t    *out;
+  F1AP_GNBDUResourceCoordinationResponse_IEs_t *ie;
+
+  uint8_t  *buffer;
+  uint32_t  len;
+  OCTET_STRING_t s;
+  
+  /* Create */
+  /* 0. Message Type */
+  memset(&pdu, 0, sizeof(pdu));
+  pdu.present = F1AP_F1AP_PDU_PR_successfulOutcome;
+  pdu.choice.successfulOutcome = (F1AP_SuccessfulOutcome_t *)calloc(1, sizeof(F1AP_SuccessfulOutcome_t));
+  pdu.choice.successfulOutcome->procedureCode = F1AP_ProcedureCode_id_GNBDUResourceCoordination;
+  pdu.choice.successfulOutcome->criticality   = F1AP_Criticality_reject;
+  pdu.choice.successfulOutcome->value.present = F1AP_SuccessfulOutcome__value_PR_GNBDUResourceCoordinationResponse;
+  out = &pdu.choice.successfulOutcome->value.choice.GNBDUResourceCoordinationResponse;
+
+  /* mandatory */
+  /* c1. Transaction ID (integer value) */
+  ie = (F1AP_GNBDUResourceCoordinationResponse_IEs_t *)calloc(1, sizeof(F1AP_GNBDUResourceCoordinationResponse_IEs_t));
+  ie->id                        = F1AP_ProtocolIE_ID_id_TransactionID;
+  ie->criticality               = F1AP_Criticality_reject;
+  ie->value.present             = F1AP_GNBDUResourceCoordinationResponse_IEs__value_PR_TransactionID;
+  ie->value.choice.TransactionID = 31;
+  ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
+  LOG_E(F1AP, "DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE Transaction ID\n");
+
+  /*E-UTRA – NR Cell Resource Coordination Request Container*/
+  if(true){
+    ie = (F1AP_GNBDUResourceCoordinationResponse_IEs_t *)calloc(1, sizeof(F1AP_GNBDUResourceCoordinationResponse_IEs_t));
+    ie->id                        = F1AP_ProtocolIE_ID_id_EUTRA_NR_CellResourceCoordinationReqAck_Container;
+    ie->criticality               = F1AP_Criticality_reject;
+    ie->value.present             = F1AP_GNBDUResourceCoordinationResponse_IEs__value_PR_EUTRA_NR_CellResourceCoordinationReqAck_Container;
+    LOG_E(F1AP, "DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE before OCTET_STRING_fromBuf\n");    
+    ie->value.choice.EUTRA_NR_CellResourceCoordinationReqAck_Container = s;
+    char *str = "456789";
+    OCTET_STRING_fromBuf(&ie->value.choice.EUTRA_NR_CellResourceCoordinationReqAck_Container, str,strlen(str));
+    LOG_E(F1AP, "DU_send_gNB_CU_RESOURCE_COORDINATION_RESPONSE after OCTET_STRING_fromBuf\n");
     ASN_SEQUENCE_ADD(&out->protocolIEs.list, ie);
   }
   

@@ -108,4 +108,6 @@ int CU_handle_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance);
 int CU_send_gNB_DU_RESOURCE_COORDINATION_RESPONSE(instance_t instance);
 //                    F1AP_GNBDUResourceCoordinationResponse_t *GNBDUResourceCoordinationResponse);
 
+int CU_send_gNB_DU_RESOURCE_COORDINATION_REQUEST(instance_t instance);
+
 #endif /* F1AP_CU_INTERFACE_MANAGEMENT_H_ */
